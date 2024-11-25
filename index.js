@@ -21,12 +21,13 @@ class SnowTheme {
     }
 
     inject() {
+        const config = this.config; // Store reference to config
         return (req, res, next) => {
             const _send = res.send;
             res.send = function(body) {
                 if (typeof body === 'string' && body.includes('</body>')) {
                     const configScript = `<script>
-                        window.SnowThemeConfig = ${JSON.stringify(this.config)};
+                        window.SnowThemeConfig = ${JSON.stringify(config)};
                     </script>`;
                     const script = '<script src="/snow-theme/snow.js"></script>';
                     body = body.replace('</body>', configScript + script + '</body>');
