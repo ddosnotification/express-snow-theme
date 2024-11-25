@@ -1,11 +1,10 @@
 {
   "name": "express-snow-theme",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Snow effect middleware for Express.js",
   "main": "index.js",
   "files": [
-    "index.js",
-    "public"
+    "index.js"
   ],
   "keywords": [
     "express",

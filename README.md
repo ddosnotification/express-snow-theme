@@ -21,8 +21,20 @@ const express = require('express');
 const snowTheme = require('express-snow-theme')();
 const app = express();
 
-app.use(snowTheme.middleware());
-app.use(snowTheme.inject());
+app.use('/', snowTheme.middleware());
+app.use('/', snowTheme.inject());
+
+app.get('/', (req, res) => {
+    res.send(`
+        <html>
+            <body>
+                <h1>Winter Page</h1>
+            </body>
+        </html>
+    `);
+});
+
+app.listen(3000);
 ```
 
 ## ⚙️ Custom Configuration
@@ -30,80 +42,53 @@ app.use(snowTheme.inject());
 const snowTheme = require('express-snow-theme')({
     snowflakes: ['❄', '❅', '❆'],    // Custom characters
     density: 100,                    // More snowflakes
-    wind: 50,                        // Stronger wind effect
-    maxSize: 2,                      // Larger flakes
-    minDuration: 8                   // Slower falling
+    interval: 200,                   // Creation interval (ms)
+    minSize: 0.8,                   // Min snowflake size
+    maxSize: 2,                     // Larger flakes
+    minDuration: 8,                 // Slower falling
+    maxDuration: 15,                // Max fall duration
+    wind: 50,                       // Stronger wind effect
+    zIndex: 999999                  // Stack order
 });
-```
-
-## 🎯 Route-Specific Usage
-```javascript
-// Snow only on winter routes
-app.use('/winter', snowTheme.middleware());
-app.use('/winter', snowTheme.inject());
-
-app.get('/', (req, res) => {
-    res.sendFile('regular.html');    // No snow
-});
-
-app.get('/winter', (req, res) => {
-    res.sendFile('winter.html');     // With snow
-});
-```
-
-## ⚡ Configuration Options
-```javascript
-{
-    snowflakes: ['❄', '❅', '❆'],  // Snowflake characters
-    density: 50,                   // Max snowflakes
-    interval: 200,                 // Creation interval (ms)
-    minSize: 0.8,                 // Min size
-    maxSize: 1.5,                 // Max size
-    minDuration: 5,               // Min fall time (s)
-    maxDuration: 15,              // Max fall time (s)
-    wind: 20,                     // Wind strength
-    zIndex: 999999               // Stack order
-}
 ```
 
 ## 🎨 Preset Examples
 
 ### Light Snow
 ```javascript
-{
+const snowTheme = require('express-snow-theme')({
     density: 30,
     minDuration: 8,
     wind: 10
-}
+});
 ```
 
 ### Blizzard
 ```javascript
-{
+const snowTheme = require('express-snow-theme')({
     density: 150,
     interval: 100,
     wind: 50,
     maxSize: 2
-}
+});
 ```
 
 ### Gentle Snow
 ```javascript
-{
+const snowTheme = require('express-snow-theme')({
     density: 40,
     minDuration: 10,
     maxSize: 1.2,
     wind: 5
-}
+});
 ```
 
 ## 🎄 Features
 - Zero dependencies
-- Route-specific application
-- Fully configurable
+- Automatically injects snow effect into HTML responses
+- Fully configurable appearance and behavior
 - Responsive design
-- Performance optimized
-- Auto cleanup
+- Performance optimized with automatic cleanup
 - Mobile-friendly
 
 ## 🔧 Browser Support
@@ -116,15 +101,13 @@ app.get('/winter', (req, res) => {
 ## 📝 License
 MIT © ddosnotification
 
-## ❄️ Show Your Support
-Give a ⭐️ if this project helped you!
-
 ## 🤝 Contributing
 1. Fork
-2. Feature branch (`git checkout -b feature/amazing`)
-3. Commit (`git commit -m 'Add amazing'`)
-4. Push (`git push origin feature/amazing`)
-5. Pull Request
+2. Create feature branch (`git checkout -b feature/amazing`)
+3. Commit changes (`git commit -m 'Add amazing'`)
+4. Push to branch (`git push origin feature/amazing`)
+5. Open a Pull Request
 
 <div align="center">
 Made with ❄️ for winter web magic
+</div>
