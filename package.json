@@ -1,6 +1,6 @@
 {
   "name": "express-snow-theme",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Snow effect middleware for Express.js",
   "main": "index.js",
   "files": [

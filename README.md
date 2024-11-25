@@ -5,7 +5,6 @@
 ![npm version](https://img.shields.io/npm/v/express-snow-theme)
 ![downloads](https://img.shields.io/npm/dm/express-snow-theme)
 ![GitHub stars](https://img.shields.io/github/stars/ddosnotification/express-snow-theme)
-![License](https://img.shields.io/npm/l/express-snow-theme)
 
 Beautiful snowfall effect middleware for Express.js websites
 </div>
