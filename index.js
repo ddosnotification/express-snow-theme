@@ -26,7 +26,6 @@ class SnowTheme {
            const _send = res.send;
            res.send = function(body) {
                if (typeof body === 'string' && body.includes('</body>')) {
-                   // Inject config and snow.js script
                    const snowScript = `
                        <script>
                            (function() {
